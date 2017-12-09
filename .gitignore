@@ -170,3 +170,4 @@ venv.bak/
 .idea/
 .vscode/
 
+/db.sqlite3
