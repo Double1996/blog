@@ -19,7 +19,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         fields = [
             'username',
             'email',
-
+            'password'
         ]
 
     def validate(self, data):

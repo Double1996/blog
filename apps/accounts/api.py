@@ -8,6 +8,7 @@ from rest_framework.permissions import (
 )
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import CreateAPIView
 
 from .serializers import (
     UserDetailSerializer,
@@ -42,7 +43,7 @@ class UserLoginAPIView(APIView):
         return Response(data=data, status=status.HTTP_200_OK)
 
 
-class UserCreateAPIView(APIView):
+class UserCreateAPIView(CreateAPIView):
     serializer_class = UserCreateSerializer
     queryset = User.objects.all()
     permission_classes = [AllowAny]
