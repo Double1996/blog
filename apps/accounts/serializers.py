@@ -1,16 +1,51 @@
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers, exceptions
+from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
+
+from .models import Token
 
 """
     fork from django-rest-auth 'https://github.com/Tivix/django-rest-auth/blob/master/rest_auth/serializers.py'
 """
 # 获取用户模型
-UserModel = get_user_model()
+User = get_user_model()
+
+
+class UserCreateSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(label='Email Address')
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+
+        ]
+
+    def validate(self, data):
+        email = data['email']
+        user_qs = User.objects.filter(email=email)
+        if user_qs.exists():
+            raise serializers.ValidationError("用户已被注册")
+        return data
+
+    def create(self, validated_data):
+        username = validated_data['username']
+        email = validated_data['email']
+        password = validated_data['password']
+        user_obj = User(
+            username=username,
+            email=email
+        )
+        user_obj.set_password(password)
+        user_obj.is_active = False
+        user_obj.save()
+        return validated_data
 
 
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(required=False, all_blank=True)
-    email = serializers.CharField(required=True, all_blank=True)
+    username = serializers.CharField(required=False)
+    email = serializers.CharField(required=True)
     password = serializers.CharField(style={'input_type': 'password'})
 
     def _validate_email(self, email, password):
@@ -57,8 +92,8 @@ class LoginSerializer(serializers.Serializer):
 
         if email:
             try:
-                username = UserModel.objects.get(email__iexact=email).get_username()
-            except UserModel.DoesNotExist:
+                username = User.objects.get(email__iexact=email).get_username()
+            except User.DoesNotExist:
                 pass
 
         if username:
@@ -74,3 +109,23 @@ class LoginSerializer(serializers.Serializer):
         attrs['user'] = user
         return attrs
 
+
+class TokenSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Token model.
+    """
+
+    class Meta:
+        model = Token
+        fields = ('key',)
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    """
+    User model w/o password
+    """
+
+    class Meta:
+        model = User
+        fields = ('pk', 'username', 'email', 'first_name', 'last_name')
+        read_only_fields = ('email',)
