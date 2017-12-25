@@ -1,3 +1,6 @@
 from rest_framework import serializers
-from posts.models import Post, Tag, Category
+from .models import Tag, Category, Comment, Post
 
+
+class PostSerializer(serializers):
+    pass
