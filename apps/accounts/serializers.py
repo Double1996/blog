@@ -54,7 +54,7 @@ class LoginSerializer(serializers.Serializer):
         if email and password:
             user = authenticate(email=email, password=password)
         else:
-            msg = _('必须输入电子邮件或者密码.')
+            msg = '必须输入电子邮件或者密码.'
             raise exceptions.ValidationError(msg)
 
         return user
@@ -65,7 +65,7 @@ class LoginSerializer(serializers.Serializer):
         if username and password:
             user = authenticate(username=username, password=password)
         else:
-            msg = _('必须输入用户名或者密码.')
+            msg = '必须输入用户名或者密码.'
             raise exceptions.ValidationError(msg)
 
         return user
@@ -78,7 +78,7 @@ class LoginSerializer(serializers.Serializer):
         elif username and password:
             user = authenticate(username=username, password=password)
         else:
-            msg = _('必须输入正确的用户名或者是正确的电子邮箱')
+            msg = '必须输入正确的用户名或者是正确的电子邮箱'
             raise exceptions.ValidationError(msg)
 
         return user
@@ -97,14 +97,14 @@ class LoginSerializer(serializers.Serializer):
                 pass
 
         if username:
-            user = self._validate_user_name(username=username, password=password)
+            user = self._validate_username(username=username, password=password)
 
         if user:
             if not user.is_active:
-                msg = _('您的账号还没被激活!')
+                msg = '您的账号还没被激活!'
                 raise exceptions.ValidationError(msg)
         else:
-            msg = _('账号验证未通过')
+            msg = '账号验证未通过'
             raise exceptions.ValidationError(msg)
         attrs['user'] = user
         return attrs
