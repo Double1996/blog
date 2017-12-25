@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers, exceptions
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 
-from .models import Token
+from rest_framework.authtoken.models import Token
 
 """
     fork from django-rest-auth 'https://github.com/Tivix/django-rest-auth/blob/master/rest_auth/serializers.py'
@@ -108,16 +108,6 @@ class LoginSerializer(serializers.Serializer):
             raise exceptions.ValidationError(msg)
         attrs['user'] = user
         return attrs
-
-
-class TokenSerializer(serializers.ModelSerializer):
-    """
-    Serializer for Token model.
-    """
-
-    class Meta:
-        model = Token
-        fields = ('key',)
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
