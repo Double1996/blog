@@ -2,10 +2,11 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers, exceptions
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 
-from rest_framework.authtoken.models import Token
+
 
 """
-    fork from django-rest-auth 'https://github.com/Tivix/django-rest-auth/blob/master/rest_auth/serializers.py'
+    fork from django-rest-auth 
+    'https://github.com/Tivix/django-rest-auth/blob/master/rest_auth/serializers.py'
 """
 # 获取用户模型
 User = get_user_model()

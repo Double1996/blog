@@ -40,7 +40,8 @@ class Post(models.Model):
     likes = models.PositiveIntegerField('点赞量', default=0)
     topped = models.BooleanField('顶置', default=False)
     tags = models.ManyToManyField(Tag, verbose_name='标签', blank=True)
-    category = models.ForeignKey(Category, verbose_name='所属分类', on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, verbose_name='所属分类', on_delete=models.SET_NULL, null=True)
 
     # image = models.ImageField(null=True,blank=True)   #TODO: 上传图片
 
@@ -83,7 +84,8 @@ pre_delete.connect(pre_save_subscriber, Post)
 class Comment(models.Model):
     user_name = models.CharField('评论者姓名', max_length=100)
     body = models.TextField('评论内容')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='所属文章')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                             verbose_name='所属文章')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
     def __str__(self):
