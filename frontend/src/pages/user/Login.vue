@@ -1,5 +1,5 @@
 <<template>
-  <el-form :model="loginForm">
+  <el-form :model="loginForm" class="login-container" :rules="loginRule">
 	<h3 class="title">forrest的blog</h3>
 	<el-form-item prop="email">
 		<el-input type="text" v-model="loginForm.email" placeholder="电子邮箱", auto-complete="off"></el-input>
@@ -14,8 +14,9 @@
 	</el-form-item>
   </el-form>
 </template>
-<<script>
+<script>
 	import { requestLogin } from "../../api/api";
+	
 	export default {
 		name: 'login',
 		data () {
@@ -24,6 +25,14 @@
 				loginForm: {
 					email: '',
 					password: '',
+				},
+				loginRule: {
+					email: [
+						{requierd: true, message: '请输入电子邮箱', trigger: 'blur' }
+					],
+					password: [
+						{required: true, message: '请输入密码', trigger: 'blur'}
+					]
 				}
 			}
 		},
@@ -37,7 +46,7 @@
 							this.login = false
 							let {msg, code, token} = data 
 							if (code !== 0) {
-								this.$msg: ({
+								this.$msg({
 									msg: msg,
 									type: 'error'	
 								})
@@ -55,7 +64,7 @@
 		}
 	}
 </script>
-<<style lang="sass" scoped>
+<<style lang="scss" scoped>
   .login-container {
     -webkit-border-radius: 5px;
     border-radius: 5px;

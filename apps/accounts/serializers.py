@@ -97,7 +97,8 @@ class LoginSerializer(serializers.Serializer):
                 pass
 
         if username:
-            user = self._validate_username(username=username, password=password)
+            user = self._validate_username(username=username,
+                                           password=password)
 
         if user:
             if not user.is_active:
