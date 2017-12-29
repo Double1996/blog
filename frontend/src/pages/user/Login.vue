@@ -1,4 +1,4 @@
-<<template>
+<<template lang="html">
   <el-form :model="loginForm" class="login-container" :rules="loginRule">
 	<h3 class="title">forrest的blog</h3>
 	<el-form-item prop="email">
@@ -15,10 +15,10 @@
   </el-form>
 </template>
 <script>
-	import { requestLogin } from "../../api/api";
+	import { requestLogin } from "@/api";
 	
 	export default {
-		name: 'login',
+		name: 'userLogin',
 		data () {
 			return {
 				logining: false,
