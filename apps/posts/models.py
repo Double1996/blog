@@ -84,8 +84,8 @@ pre_delete.connect(pre_save_subscriber, Post)
 class Comment(models.Model):
     user_name = models.CharField('评论者姓名', max_length=100)
     body = models.TextField('评论内容')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,
-                             verbose_name='所属文章')
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, verbose_name='所属文章')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
     def __str__(self):

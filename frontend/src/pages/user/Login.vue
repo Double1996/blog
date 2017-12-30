@@ -1,6 +1,6 @@
-<<template lang="html">
+<<template>
   <el-form :model="loginForm" class="login-container" :rules="loginRule">
-  <h3 class="title">forrest的blog</h3>
+  <h3 class="title">double的blog</h3>
   <el-form-item prop="email">
     <el-input type="text" v-model="loginForm.email" placeholder="电子邮箱", auto-complete="off"></el-input>
   </el-form-item>

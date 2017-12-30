@@ -1,9 +1,6 @@
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers, exceptions
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
-
-
-
 """
     fork from django-rest-auth 
     'https://github.com/Tivix/django-rest-auth/blob/master/rest_auth/serializers.py'
@@ -17,11 +14,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = [
-            'username',
-            'email',
-            'password'
-        ]
+        fields = ['username', 'email', 'password']
 
     def validate(self, data):
         email = data['email']
@@ -34,10 +27,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         username = validated_data['username']
         email = validated_data['email']
         password = validated_data['password']
-        user_obj = User(
-            username=username,
-            email=email
-        )
+        user_obj = User(username=username, email=email)
         user_obj.set_password(password)
         user_obj.is_active = False
         user_obj.save()
@@ -98,8 +88,8 @@ class LoginSerializer(serializers.Serializer):
                 pass
 
         if username:
-            user = self._validate_username(username=username,
-                                           password=password)
+            user = self._validate_username(
+                username=username, password=password)
 
         if user:
             if not user.is_active:
@@ -120,4 +110,4 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('pk', 'username', 'email', 'first_name', 'last_name')
-        read_only_fields = ('email',)
+        read_only_fields = ('email', )

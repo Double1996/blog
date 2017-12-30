@@ -1,19 +1,14 @@
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
-from rest_framework.permissions import (
-    AllowAny,
-    IsAuthenticated
-)
+from rest_framework.permissions import (AllowAny, IsAuthenticated)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
 from rest_framework.authtoken.models import Token
 
-from .serializers import (
-    UserDetailSerializer,
-    LoginSerializer,
-    UserCreateSerializer)
+from .serializers import (UserDetailSerializer, LoginSerializer,
+                          UserCreateSerializer)
 
 User = get_user_model()
 
@@ -36,10 +31,7 @@ class UserLoginAPIView(APIView):
                 'token': token.key,
             }
         else:
-            data = {
-                'code': 1,
-                'msg': '账号不存在或者密码错误'
-            }
+            data = {'code': 1, 'msg': '账号不存在或者密码错误'}
         return Response(data=data, status=status.HTTP_200_OK)
 
 
