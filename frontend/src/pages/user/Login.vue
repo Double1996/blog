@@ -1,39 +1,42 @@
-<<template>
-  <el-form :model="loginForm" class="login-container" :rules="loginRule">
-  <h3 class="title">double的blog</h3>
-  <el-form-item prop="email">
-    <el-input type="text" v-model="loginForm.email" placeholder="电子邮箱", auto-complete="off"></el-input>
-  </el-form-item>
-  <el-form-item prop="password">
-    <el-input v-model="loginForm.password" placeholder="密码"></el-input>
-  </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click.native.prevent="handleLogin" :loading="logining">
-      登录
-    </el-button>
-  </el-form-item>
+<template>
+  <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px"
+           class="demo-ruleForm login-container">
+    <h3 class="title">double 的博客</h3>
+    <el-form-item prop="account">
+      <el-input type="text" v-model="loginForm.account" auto-complete="off" placeholder="邮箱"></el-input>
+    </el-form-item>
+    <el-form-item prop="checkPass">
+      <el-input type="password" v-model="loginForm.checkPass" auto-complete="off" placeholder="密码"></el-input>
+    </el-form-item>
+    <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
+    <el-form-item style="width:100%;">
+      <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin" :loading="logining">登录
+      </el-button>
+    </el-form-item>
   </el-form>
 </template>
+
 <script>
   import { requestLogin } from '../../api'
-  
+
   export default {
-    name: 'UserLogin',
+    name: 'login',
     data () {
       return {
         logining: false,
         loginForm: {
-          email: '',
-          password: ''
+          account: '',
+          checkPass: ''
         },
-        loginRule: {
-          email: [
-            {requierd: true, message: '请输入电子邮箱', trigger: 'blur'}
+        rules2: {
+          account: [
+            {required: true, message: '请输入账号', trigger: 'blur'}
           ],
-          password: [
+          checkPass: [
             {required: true, message: '请输入密码', trigger: 'blur'}
           ]
-        }
+        },
+        checked: true
       }
     },
     methods: {
@@ -41,30 +44,30 @@
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
             this.logining = true
-            let loginParams = {email: this.loginForm.email, password: this.loginForm.password}
+            let loginParams = {email: this.loginForm.account, password: this.loginForm.checkPass}
             requestLogin(loginParams).then(data => {
-              this.login = false
-              let {msg, code} = data
+              this.logining = false
+              let {msg, code, token} = data
               if (code !== 0) {
-                this.$msg({
-                  msg: msg,
+                this.$message({
+                  message: msg,
                   type: 'error'
                 })
               } else {
                 this.$router.push({path: '/'})
-                // ssionStorage.setItem('token', JSON.stringify(token))
+                sessionStorage.setItem('token', JSON.stringify(token))
               }
             })
           } else {
             return false
           }
-        }
-        )
+        })
       }
     }
   }
 </script>
-<<style lang="scss" scoped>
+
+<style lang="scss" scoped>
   .login-container {
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -86,4 +89,3 @@
     }
   }
 </style>
-

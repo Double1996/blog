@@ -1,12 +1,11 @@
 // A custom Nightwatch assertion.
-// The assertion name is the filename.
-// Example usage:
+// the name of the method is the filename.
+// can be used in tests like this:
 //
 //   browser.assert.elementCount(selector, count)
 //
-// For more information on custom assertions see:
+// for how to write custom assertions see
 // http://nightwatchjs.org/guide#writing-custom-assertions
-
 exports.assertion = function (selector, count) {
   this.message = 'Testing if element <' + selector + '> has count: ' + count
   this.expected = count
@@ -18,8 +17,8 @@ exports.assertion = function (selector, count) {
   }
   this.command = function (cb) {
     var self = this
-    return this.api.execute(function (selectorToCount) {
-      return document.querySelectorAll(selectorToCount).length
+    return this.api.execute(function (selector) {
+      return document.querySelectorAll(selector).length
     }, [selector], function (res) {
       cb.call(self, res)
     })

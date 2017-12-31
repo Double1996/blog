@@ -1,12 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <div id="main">
+      <app-header></app-header>
+      <transition name="router-fade">
+        <router-view/>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  import AppHeader from './components/header'
+  import AppFooter from './components/footer'
+
+  export default {
+    name: 'app',
+    components: {
+      AppHeader,
+      AppFooter
+    }
+  }
 </script>
+
+<style lang="scss">
+  @import "style/minireset";
+</style>

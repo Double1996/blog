@@ -1,4 +1,4 @@
-# frontend
+# blog_frontend
 
 > A Vue.js project
 
