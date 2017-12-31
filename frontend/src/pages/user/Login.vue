@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px"
+  <el-form :model="loginForm" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px"
            class="demo-ruleForm login-container">
     <h3 class="title">double 的博客</h3>
     <el-form-item prop="account">

@@ -2,35 +2,8 @@
   <div class="main">
     <el-row>
       <el-col :span="16">
-        <div class="df-companyList">
-          <h1><el-tag type='success'>最近更新企业信息</el-tag></h1>
-          <div class="box" v-for="(company, index) in companies" :key="index">
-            <div class="main">
-              <router-link class='' :to="{ path: company.companyView }">{{ company.company_name }}</router-link>
-              <div class="meta">
-                <div>
-                  电子邮箱:<span>{{ company.company_email }}</span>
-                </div>
-                <div>
-                  企业地址:<span>{{ company.business_address }}</span>
-                </div>
-                 <div>
-                  注册时间:<span>{{ company.approval_date }}</span>
-                </div>
-                 <div>
-                  法人代表:<span>{{ company.legal_representative }}</span>
-                </div>
-                <div v-if="company.avatar">
-                  <img :src="company.avatar" alt="avatar" class="avatar">
-                </div>
-              </div>
-            </div>
-          </div>
-          <page-view></page-view>
-        </div>
       </el-col>
       <el-col :span="6">
-        <h3><i class="fa fa-users"></i>爬虫任务列表</h3>
       </el-col>
     </el-row>
   </div>

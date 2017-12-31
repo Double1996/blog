@@ -1,7 +1,11 @@
-## forrest blog
+## Double blog
+> In case I don't see ya, good afternoon, good evening and good night. 
 
--  power by Vue2 and Django REST
+- This my personal blog power by Vue-cli and Django REST
 
-### 环境
-- Python 3.5
-- Django 1.11.5
+### Full web stack
+- Python3
+- Django REST
+- Vue2
+- Mysql 5.7
+
