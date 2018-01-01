@@ -2,12 +2,18 @@
 import Home from './pages/home'
 
 // 用户
-import Login from './pages/user/Login.vue'
+import login from './pages/user/Login.vue'
+import userRegister from './pages/user/Register.vue'
 
 const routes = [
   {
+    path: '/register',
+    component: userRegister,
+    name: 'userRegister'
+  },
+  {
     path: '/login',
-    component: Login,
+    component: login,
     name: 'login'
   },
   {

@@ -6,13 +6,6 @@
         <el-menu-item index="2" :route="{ name:'poem' }">分类</el-menu-item>
         <el-menu-item index="4" :route="{ name:'apprec' }">ABOUT ME</el-menu-item>
       </el-col>
-      <el-col class="searchbar-wrapper" :span="7">
-        <el-input
-          class="searchbar c-form"
-          icon="search"
-          placeholder="搜索您感兴趣的博文"
-        ></el-input>
-      </el-col>
        <el-menu-item index="6" :route="{ name:'login' }">登录</el-menu-item>
     </el-row>
   </el-menu>
@@ -24,9 +17,3 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  .searchbar-wrapper{
-    width: 15%;
-    font-size: 2em
-  }
-</style>
