@@ -7,8 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
 from rest_framework.authtoken.models import Token
 
-from .serializers import (UserDetailSerializer, LoginSerializer,
-                          UserCreateSerializer)
+from .serializers import (UserDetailSerializer,
+                          LoginSerializer, UserCreateSerializer)
 
 User = get_user_model()
 
