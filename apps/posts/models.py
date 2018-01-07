@@ -2,7 +2,6 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from django.utils.safestring import mark_safe
-from unidecode import unidecode
 from django.db.models.signals import pre_save, pre_delete
 from markdown2 import markdown
 
@@ -57,7 +56,7 @@ class Post(models.Model):
 
 
 def create_slug(instance, new_slug=None):
-    slug = slugify(unidecode(instance.title))
+    slug = slugify(instance.title)
     if new_slug is not None:
         slug = new_slug
     qs = Post.objects.filter(slug=slug).order_by("-id")
