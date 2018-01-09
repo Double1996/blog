@@ -5,6 +5,7 @@
 
 ### Full web stack
 - Python3
+- Django v2.0
 - Django REST
 - Vue2
 - Mysql 5.7
