@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from django.utils.safestring import mark_safe
 from django.db.models.signals import pre_save, pre_delete

@@ -6,3 +6,4 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 User = get_user_model()
+

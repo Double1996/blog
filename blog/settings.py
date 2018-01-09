@@ -24,11 +24,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # local apps
     'apps.posts',
     'apps.accounts',
 
+    # restful
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
