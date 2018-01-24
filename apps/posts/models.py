@@ -46,8 +46,8 @@ class Post(models.Model):
     def ___str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse('posts:detail', kwargs={"slug", self.slug})
+    # def get_absolute_url(self):
+    #     return reverse('posts:detail', kwargs={"slug", self.slug})
 
     def get_markdown(self):
         context = self.context
